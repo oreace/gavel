@@ -1,6 +1,17 @@
 body {
     background-color: #1a1f25;
-    font-family: lato;
+}
+
+h1,
+h2,
+h3,
+h4 h5,
+a,
+div,
+span,
+p,
+input {
+    font-family: 'Roboto', sans-serif !important;
 }
 
 .navbar {
@@ -33,6 +44,8 @@ nav .menu .dropdown-menu {
 }
 
 .main .box-a {
+    background: url('../img/post-blur.jpg');
+    background-size: cover;
     background-color: #fff;
     /*#43a047*/
     border: 2px solid #1a1f25;
@@ -43,14 +56,28 @@ nav .menu .dropdown-menu {
 }
 
 .main .cee .bg-c {
-    background-color: #03a9f4;
+    /*background-color: #03a9f4;*/
+    background: url('../img/otherd.jpg');
+    background-size: cover;
     border-left: 0px;
     border-bottom: 0px;
+    text-align: center;
+}
+
+.main .cee .bg-c h1 {
+    text-align: center;
+    margin-top: 30%;
+    color: #fff !important;
+    background-color: rgba(0, 0, 0, .4);
+    padding: 5px;
+    text-transform: uppercase;
 }
 
 .main .cee .bg-gavel {
-    /*background-image: url(../img/gavel.png);*/
-    background-color: #ff9800;
+    background-image: url('../img/otherc.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+    /*background-color: #ff9800;*/
     /*background-size: cover;*/
     text-align: center;
     border-right: 0px;
@@ -75,10 +102,13 @@ nav .menu .dropdown-menu {
 
 .main .activity {
     height: 432px;
+    /*background-image: url('../img/post-img.jpg');*/
+    background: transparent;
 }
 
 .main .activity .usr-search {
     padding-top: 10px;
+    /*background-color: #fff;*/
 }
 
 .main .activity .usr-search .user-icon {
@@ -87,6 +117,7 @@ nav .menu .dropdown-menu {
 
 .main .activity .usr-search .fa-user-circle {
     font-size: 2.2em;
+    color: #fff !important;
 }
 
 .main .activity .stylish-input-group .input-group-addon {
@@ -113,8 +144,12 @@ nav .menu .dropdown-menu {
 .main .login .div,
 .main .login,
 .main .log {
-    background: #f44336;
+    /*background: #fff; //#f44336*/
     border: 0px solid;
+}
+
+.main .log {
+    background: #fff;
 }
 
 .main .login .div {
@@ -129,44 +164,46 @@ nav .menu .dropdown-menu {
 }
 
 .main .login .login-area h2 {
-    color: #fff;
+    color: #000;
     font-weight: 500;
     text-align: center;
 }
 
-.main .login .login-area input {
+.main .login .login-area .inputs,
+.main .login .login-area .inputs:focus {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
-    -webkit-appearance: none;
+    -webkit-apedarance: none;
     display: block;
     background: transparent;
     width: 80%;
     margin: 0px auto;
     border: none;
     border-radius: 0;
-    border-bottom: 2.2px solid #ddd;
+    border-bottom: 2.2px solid rgba(0, 0, 0, .6);
     text-align: center;
-    color: #fff;
+    color: rgba(0, 0, 0, .6);
+    ;
     letter-spacing: 1.4px;
 }
 
 .main .login .login-area ::-webkit-input-placeholder {
     text-align: center;
-    color: rgba(255, 255, 255, 9);
+    color: rgba(0, 0, 0, .6);
 }
 
-.main .login .login-area input:focus {
+.main .login .login-area .inputs:focus {
     outline: none;
 }
 
 .main .login .login-area .group {
     text-align: center;
-    color: #fff;
+    color: #000;
 }
 
 .main .login .login-area .group a,
 .main .login .login-area .group a:hover {
-    color: white;
+    color: rgba(0, 0, 0, .6);
     text-decoration: none;
     outline: none;
 }
@@ -204,10 +241,17 @@ nav .menu .dropdown-menu {
 }
 
 
+/*sign up*/
+
+.s-up div.control-group .controls {
+    margin: 20px 0;
+}
+
+
 /*=---------User Profile-------=*/
 
 .logged-in {
-    color: #fff;
+    color: #000;
 }
 
 .logged-in .rm-pad-left {
@@ -218,17 +262,12 @@ nav .menu .dropdown-menu {
     font-size: 1.5em;
 }
 
-.logged-in .nm {
-    /*padding-left: 40px;*/
-}
-
 .logged-in .profile-image {
     margin-top: 20px;
     width: 100px;
     height: 100px;
     /*background-color: #ccc;*/
     border-radius: 50%;
-    background-image: url('../img/atom.png');
     background-size: contain;
 }
 
@@ -248,6 +287,10 @@ nav .menu .dropdown-menu {
 .logged-in .user-mentees {
     text-decoration: none;
     text-align: center;
+}
+
+.logged-in .edit-post {
+    color: #000;
 }
 
 
@@ -289,6 +332,7 @@ a.post-link {
 }
 
 .post .post-img-content {
+    width: 69%;
     height: 230px;
     position: relative;
     text-align: center;
@@ -296,10 +340,11 @@ a.post-link {
 
 .post .post-img-content img {
     /*position: absolute;*/
-    /*width: 100%;*/
-    display: block;
-    margin: 0 auto;
-    max-height: 200px;
+    width: 100%;
+    height: 100%;
+    /*display: block;*/
+    /*margin: 0 auto;*/
+    /*max-height: 200px;*/
 }
 
 .post .post-title b {
@@ -311,8 +356,36 @@ a.post-link {
     margin-top: 5px;
 }
 
-.post .content {
-    padding-left: 20px;
+.post .content .info-post i {
+    color: white;
+    /*border: 2px solid black;*/
+    text-shadow: 1px 0 0 rgba(0, 0, 0, .4), -1px 0 0 rgba(0, 0, 0, .4), 0 1px 0 rgba(0, 0, 0, .4), 0 -1px 0 rgba(0, 0, 0, .4), 1px 1px rgba(0, 0, 0, .4), -1px -1px 0 rgba(0, 0, 0, .4), 1px -1px 0 rgba(0, 0, 0, .4), -1px 1px 0 rgba(0, 0, 0, .4);
+    /*padding: 20px;*/
+    text-align: center;
+    /*border: 1px solid rgba(0, 0, 0, .4);*/
+    /*border-radius: 50%;*/
+}
+
+.post .content .info-post i:hover {
+    text-shadow: 1px 0 0 rgba(255, 0, 0, .4), -1px 0 0 rgba(244, 0, 0, .4), 0 1px 0 rgba(244, 0, 0, .4), 0 -1px 0 rgba(244, 0, 0, .4), 1px 1px rgba(244, 0, 0, .4), -1px -1px 0 rgba(244, 0, 0, .4), 1px -1px 0 rgba(244, 0, 0, .4), -1px 1px 0 rgba(244, 0, 0, .4);
+    /*border: 1px solid rgba(255, 0, 0, .4);*/
+}
+
+.post .content .info-post span.share {
+    margin: 0 25px;
+    width: 30px;
+    height: 30px;
+    /*padding: 10px;*/
+}
+
+.post .content .info-post .social-share {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+.post .content .info-post {
+    width: 69%;
 }
 
 .post .content .info-n-header {
@@ -354,6 +427,12 @@ a.post-link {
     .post .author {
         left: 90%;
     }
+    .post .post-img-content {
+        width: 100%;
+        height: 230px;
+        position: relative;
+        text-align: center;
+    }
 }
 
 .post .content .info-n-header .first-line {
@@ -368,12 +447,12 @@ a.post-link {
 }
 
 .post .content .info-post .share {
-    margin-right: 30px;
+    /*margin: 0 30px;*/
     /*font-size:1%*/
 }
 
 .post .content .info-post .share .fa-heart {
-    color: red;
+    /*color: red;*/
     opacity: .8;
 }
 
@@ -382,7 +461,7 @@ a.post-link {
     opacity: .6;
 }
 
-.sel-crt-type {
+.sel-crt-tyed {
     border: none;
     background-color: inherit;
     padding: 0 10px;
@@ -401,9 +480,13 @@ a.post-link {
     line-height: 1.5em;
 }
 
-.extra .gav span {
+.extra span {
+    color: white;
     padding: 5px 10px;
     background: rgba(0, 0, 0, .6);
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.5em;
 }
 
 
@@ -416,7 +499,8 @@ a.post-link {
     text-align: center;
 }
 
-#login .modal-body .controls input,
+#login .modal-body .controls .inputs,
+.main .login .login-area .inputs:focus,
 .selectProf {
     border: 1px solid rgba(244, 67, 54, .8);
     border-top: 0px;
@@ -509,4 +593,61 @@ a.post-link {
 
 .error-page h3 a {
     opacity: .8;
+}
+
+.o h3,
+.oo h3,
+.ooo h3 {
+    line-height: 50px;
+}
+
+.bg-gavel h3 {
+    line-height: 40px;
+    background: rgba(0, 0, 0, .5);
+    padding: 5px;
+    color: #fff;
+    margin-top: 30%;
+}
+
+.o {
+    background-image: url('../img/other.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+    opacity: .6;
+    /*color: white;*/
+}
+
+.oo {
+    background-image: url('../img/othera.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.ooo {
+    background-image: url('../img/otherb.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.o,
+.oo,
+.ooo,
+.bg-gavel,
+.bg-c {
+    opacity: .6;
+}
+
+.o:hover,
+.oo:hover,
+.ooo:hover,
+.bg-gavel:hover,
+.bg-c:hover {
+    opacity: 1;
+    transition: 0.4s ease-in-out;
+}
+
+input#loginbtn {
+    background-color: #fff;
+    border: 0px solid transparent;
+    outline: none;
 }

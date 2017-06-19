@@ -36,14 +36,14 @@
                             </form>
                         </div>
                         <div class="row">
-                            <!--<div class="col-sm-2 col-md-2"></div>-->
-                            <div id="slideshow" class="col-sm-8 col-md-12">
+                            <div class="col-sm-3 col-md-2"></div>
+                            <div id="slideshow" class="col-sm-6 col-md-8">
                                 <div id="slideshowWindow" class="champions">
                                     <!--Slideshow-->
                                     <div id="slidesHolder">
                                         <!--slide one-->
                                      <?php 
-                                     $get = mysqli_query($db, "select * from g_forum_post order by id desc LIMIT 50");
+                                     $get = mysqli_query($db, "select * from g_forum_post order by id desc LIMIT 2");
                                      while ($row = mysqli_fetch_array($get)){
                                      $id = $row['id'];
                                      $user_id = $row['user_id'];
@@ -55,54 +55,54 @@
                                      $name = $getname['first_name']." ".$getname['last_name'];
                                      $img = $getname['img'];  
                                      //=====time//
-    $cur_time = time() - (60 * 60);
-    $time_post = strtotime("$timeposted");
-    $diff = abs($cur_time-$time_post);	
-    
-    //======================time ish
-    $MINUTE = 60;
-    $HOUR = 60 * 60;
-    $DAY = 60 * 60 * 24;
-    $MONTH = 60 * 60 * 24 * 30;
-    
-    if($diff < 2 * $MINUTE){
-       $time = "about a minute ago";
-    }else if($diff < 45 * $MINUTE){
-       $time = floor($diff/$MINUTE) ." minutes ago";
-        
-    }else if($diff < 90 * $MINUTE){
-          $time = "1 hour ago";
-    }else if($diff < 24 * $HOUR){
-          $time = floor($diff/$HOUR) ." hours ago";
-    }else if($diff < 48 * $HOUR){
-           $time = "yesterday"; 
-    }else if($diff < 30 * $DAY){
-        $time = floor($diff/$DAY) ." days ago";
-    }else if($diff < 12 * $MONTH){
-        $months = floor($diff/$DAY/30);
-         if ($months<=1){
-             $time = "1 month ago";
-             
-         }else{
-             $time = $months." months ago";
-             
-         }
-         
-        
-    }else{
-        $years = floor($diff/$DAY/365);
-         if ($years<=1){
-             $time = "1 year ago";
-             
-         }else{
-             $time = $years." years ago";
-             
-         }
-        
-    }
-                                $facebook_count = mysqli_num_rows(mysqli_query($db, "select * from g_forum_poll where forum_id='$id' and type='facebook'"));
-                                $twitter_count = mysqli_num_rows(mysqli_query($db, "select * from g_forum_poll where forum_id='$id' and type='twitter'"));
-                                $likes_count = mysqli_num_rows(mysqli_query($db, "select * from g_forum_poll where forum_id='$id' and type='like'"));
+                                    $cur_time = time() - (60 * 60);
+                                    $time_post = strtotime("$timeposted");
+                                    $diff = abs($cur_time-$time_post);	
+                                    
+                                    //======================time ish
+                                    $MINUTE = 60;
+                                    $HOUR = 60 * 60;
+                                    $DAY = 60 * 60 * 24;
+                                    $MONTH = 60 * 60 * 24 * 30;
+                                    
+                                    if($diff < 2 * $MINUTE){
+                                    $time = "about a minute ago";
+                                    }else if($diff < 45 * $MINUTE){
+                                    $time = floor($diff/$MINUTE) ." minutes ago";
+                                        
+                                    }else if($diff < 90 * $MINUTE){
+                                        $time = "1 hour ago";
+                                    }else if($diff < 24 * $HOUR){
+                                        $time = floor($diff/$HOUR) ." hours ago";
+                                    }else if($diff < 48 * $HOUR){
+                                        $time = "yesterday"; 
+                                    }else if($diff < 30 * $DAY){
+                                        $time = floor($diff/$DAY) ." days ago";
+                                    }else if($diff < 12 * $MONTH){
+                                        $months = floor($diff/$DAY/30);
+                                        if ($months<=1){
+                                            $time = "1 month ago";
+                                            
+                                        }else{
+                                            $time = $months." months ago";
+                                            
+                                        }
+                                        
+                                        
+                                    }else{
+                                        $years = floor($diff/$DAY/365);
+                                        if ($years<=1){
+                                            $time = "1 year ago";
+                                            
+                                        }else{
+                                            $time = $years." years ago";
+                                            
+                                        }
+                                        
+                                    }
+                                    $facebook_count = mysqli_num_rows(mysqli_query($db, "select * from g_forum_poll where forum_id='$id' and type='facebook'"));
+                                    $twitter_count = mysqli_num_rows(mysqli_query($db, "select * from g_forum_poll where forum_id='$id' and type='twitter'"));
+                                    $likes_count = mysqli_num_rows(mysqli_query($db, "select * from g_forum_poll where forum_id='$id' and type='like'"));
                                
        
                                      ?>
@@ -121,7 +121,7 @@
                                                             <div class="usr-img">
                                                             <?php 
                                                             if ($img == NULL){
-                                                            echo '<i class="fa fa-user-circle fa-3x"></i>';
+                                                            echo '<i class="fa fa-user-circle fa-2x"></i>';
                                                             }else{ 
                                                             ?>
                                                             <img src="<?php echo URL; ?>public/img/avatar/<?php echo $img; ?>" alt="">
@@ -137,58 +137,61 @@
                                                     <div class="info-post">
                                 
                                                         <p><?php echo substr($post_text, 0, 60)?>...</p>
-                                <span class=" pull-left share"><a href="<?php echo URL; ?>forum/like/<?php echo $id ?>"> <i class="fa fa-heart"></i></a><span class="num"><?php echo $likes_count; ?></span>
-                                </span>
-                                <span class=" pull-left share"><a href="#" class="sharefacebook"> <i class="fa fa-facebook"></i></a><span class="num"><?php echo $facebook_count; ?></span>
-                                </span>
-                                <span class=" pull-left share"><a href="#"> <i class="fa fa-twitter"></i></a><span class="num"><?php echo $twitter_count; ?></span></span>
-                         </div>
+                                                        <div class="social-share">
+                                                            <span class="share"><a href="<?php echo URL; ?>forum/like/<?php echo $id ?>"> <i class="fa fa-heart"></i></a>
+                                                            <span class="num"><?php echo $likes_count; ?></span>
+                                                            </span>
+                                                            <span class="share"><a href="#"> <i class="fa fa-facebook"></i></a>
+                                                            </span>
+                                                            <span class="share tw"><a href="#"> <i class="fa fa-twitter"></i></a></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         </a>
                                          <div id="postFeed<?php echo $id; ?>" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="post">
-                         <?php if($post_content != NULL){ ?>
-                                                <div class="post-img-content">
-                                                    <img src="<?php echo URL; ?>public/img/forum/<?php echo $post_content; ?>" class="img-responsive" />
-                                                </div>
-                                                <?php } ?>
-                             <div class="content">
-                            <div class="info-n-header">
-                                <div class="first-line">
-                                         <div class="usr-img">
-                                                            <?php 
-                                                            if ($img == NULL){
-                                                            echo '<i class="fa fa-user-circle fa-3x"></i>';
-                                                            }else{ 
-                                                            ?>
-                                                            <img src="<?php echo URL; ?>public/img/avatar/<?php echo $img; ?>" alt="">
-                                                           <?php } ?>
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <div class="post">
+                                                        <?php if($post_content != NULL){ ?>
+                                                                                <div class="post-img-content">
+                                                                                    <img src="<?php echo URL; ?>public/img/forum/<?php echo $post_content; ?>" class="img-responsive" />
+                                                                                </div>
+                                                                                <?php } ?>
+                                                            <div class="content">
+                                                            <div class="info-n-header">
+                                                                <div class="first-line">
+                                                                        <div class="usr-img">
+                                                                            <?php 
+                                                                            if ($img == NULL){
+                                                                            echo '<i class="fa fa-user-circle fa-2x"></i>';
+                                                                            }else{ 
+                                                                            ?>
+                                                                            <img src="<?php echo URL; ?>public/img/avatar/<?php echo $img; ?>" alt="">
+                                                                        <?php } ?>
+                                                                            </div>
+                                                                            <p class="head"><?php echo $name; ?><br>
+                                                                            </p>
+                                                                            <span class="author">
+                                                                                <time datetime="2014-01-20"><?php echo $time; ?></time>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="info-post">
+                                                                        <p><?php echo $post_text; ?></p>
+                                                                        <span class=" pull-left share"><a href="<?php echo URL; ?>forum/like/<?php echo $id ?>"> <i class="fa fa-heart"></i></a><span class="num"><?php echo $likes_count; ?></span>
+                                                                        </span>
+                                                                        <span class=" pull-left share"><a href="#" class="sharefacebook"> <i class="fa fa-facebook"></i></a><span class="num"><?php echo $facebook_count; ?></span>
+                                                                        </span>
+                                                                        <span class=" pull-left share"><a href="#"> <i class="fa fa-twitter"></i></a><span class="num"><?php echo $twitter_count; ?></span></span>                            </div>
+                                                                </div>
                                                             </div>
-                                                            <p class="head"><?php echo $name; ?><br>
-                                                            </p>
-                                                            <span class="author">
-                                                                <time datetime="2014-01-20"><?php echo $time; ?></time>
-                                                            </span>
                                                         </div>
                                                     </div>
-                            <div class="info-post">
-                                <p><?php echo $post_text; ?></p>
-                                <span class=" pull-left share"><a href="<?php echo URL; ?>forum/like/<?php echo $id ?>"> <i class="fa fa-heart"></i></a><span class="num"><?php echo $likes_count; ?></span>
-                                </span>
-                                <span class=" pull-left share"><a href="#" class="sharefacebook"> <i class="fa fa-facebook"></i></a><span class="num"><?php echo $facebook_count; ?></span>
-                                </span>
-                                <span class=" pull-left share"><a href="#"> <i class="fa fa-twitter"></i></a><span class="num"><?php echo $twitter_count; ?></span></span>                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                </div>
+                                            </div>
                                        <?php } ?> 
                                        
                                         <!--end of Slide-->
@@ -196,7 +199,8 @@
 
                                 </div>
                             </div>
-                            <!--<div class="col-sm-2 col-md-offset-1"></div>-->
+                            <!--stretch-->
+                            <div class="col-sm-3 col-md-2"></div>
                         </div>
                     </div>
                 </div>
@@ -209,57 +213,53 @@
                                 ?> 
                                   <div class="logged-in">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                             <div class="col-md-12">
                                                  <div class="profile-image">
                                                       <?php 
-                                                       if ($img == NULL){
+                                                       if ($img == NULL)
+                                                       {
                                                        ?>
-                                                     <i class="fa fa-user-circle fa-5x"></i>
+                                                     <img src="<?php echo URL; ?>public/img/atom.png" class="img-responsive">
                                                      <?php }else{ ?>
-                                                     <img src="<?php echo URL; ?>public/img/avatar/<?php echo $img; ?>" alt="">
+                                                     <img src="<?php echo URL; ?>public/img/avatar/<?php echo $img; ?>" class="img-responsive">
                                                      <?php } ?>
-                                               
+                                                <div class="col-md-3 lg-out">
+                                                    <a href="<?php echo URL; ?>login/logout" class="btn btn-primary">Log Out</a>
+                                                </div>
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class=" col-md-8 col-xs-8 col-sm-8 rm-pad-left">
                                             <div class="col-md-12 rm-pad-left">
-                                                <span class="title"><h3>My Profile</h3></span><br>
+                                                <h3>My Profile</h3><br>
                                                 <p class="infoz nm"><?php echo $name; ?> <br> <?php echo $prof; ?>
                                                 </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-md-12 col-xs-12 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="col-md-3 lg-out">
-                                                    <a href="<?php echo URL; ?>login/logout" class="btn btn-primary">Log Out</a>
-                                                </div>
-                                                <div class="col-md-3">
+                                    
+                                                <div class="col-md-4">
                                                     <div class="user-post">
                                                         <p class="infoz"><span class="num">3</span></p>
                                                         <p class="infoz"><span class="title">Post</span></p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="user-mentor">
                                                         <p class="infoz"><span class="num">5</span></p>
                                                         <p class="infoz"><span class="title">Mentor</span></p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="user-mentees">
                                                         <p class="infoz"><span class="num">6</span></p>
                                                         <p class="infoz"><span class="title">Mentees</span></p>
                                                     </div>
                                                 </div>
                                                 <div class="edit-post pull-right">
-                                                    <a href="#" style="outline:none; text-decoration:none; color:#fff;"><i class="fa fa-edit fa-2x"></i></a>
+                                                    <a href="#" style="outline:none; text-decoration:none; color:#fff;"><i class="fa fa-edit"></i> Edit</a>
                                                 </div>
-                                            </div>
+                                          
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -277,10 +277,10 @@
                                            $_SESSION['error'] = NULL;
                                            }
                                            ?>
-                                            <input type="email" name="email" class="used" placeholder="Email">
-                                            <input type="password" name="password" placeholder="Password">
+                                            <input type="email" name="email" class="used inputs" placeholder="Email" autocomplete="off">
+                                            <input class="inputs"  type="password" name="password" placeholder="Password" autocomplete="off">
                                             <p>
-                                                <input type="submit" name="login" value="Log In">
+                                                <input type="submit" id="loginbtn"  name="login" value="Log In">
                                             </p>
                                             <p> Don't have an account? <a href="#" data-toggle="modal" data-target="#login">Sign up</a></p>
                                         </div>
@@ -297,10 +297,10 @@
                       <div class="row">
                         <div class="cee">
                             <div class="col-xs-6 col-sm-6 col-md-6 margin bg-c">
-                                <h1 class="c">C</h1>
+                                <h2 class="h1">Complaint</h2>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 margin bg-gavel">
-                                <img src="<?php URL; ?>public/img/gavel.png" width="140px" height="140px" alt="">
+                                 <h3 class="gvel">In Progress</h3>
                             </div>
                         </div>
                     </div>
@@ -313,9 +313,9 @@
                             <h3> <span> Court</span> <br><span> Listing</span> </h3>
                         </div>
                     </a>
-                    <div class="col-xs-6 col-sm-3 col-md-3 margin extra-box lawyer"></div>
-                    <div class="col-xs-6 col-sm-3 col-md-3 margin extra-box bg-orange"></div>
-                    <div class="col-xs-6 col-sm-3 col-md-3 margin extra-box bg-green"></div>
+                    <div class="col-xs-6 col-sm-3 col-md-3 o margin extra-box lawyer"> <h3> <span> Coming</span> <br><span> soon</span> </h3></div>
+                    <div class="col-xs-6 col-sm-3 col-md-3 oo margin extra-box"> <h3> <span> Coming</span> <br><span> sooner</span> </h3></div>
+                    <div class="col-xs-6 col-sm-3 col-md-3 ooo margin extra-box"> <h3> <span> Coming</span> <br><span> soon</span> </h3></div>
                 </div>
             </div>
 
@@ -405,8 +405,8 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-body">
-                    <legend>Sign Up</legend>
-                    <form class="form" method="post" action="<?php echo URL; ?>member/createMember">
+                    <legend >Sign Up</legend>
+                    <form class="form s-up" method="post" action="<?php echo URL; ?>member/createMember">
                     <?php 
                     if (isset($_SESSION['errorreg'])){
                              $err = $_SESSION['errorreg'];
@@ -415,23 +415,20 @@
                     ?>
 
                         <div class="control-group">
-                            <label class="control-label" for="inputName">Full Name</label>
                             <div class="controls">
-                                <input type="text" placeholder="First Name" name="fname" required>
-                                <input type="text" placeholder="Last Name" name="lname" required>
+                                <input class=" inputs" type="text" placeholder="First Name" name="fname" required>
+                                <input class=" inputs" type="text" placeholder="Last Name" name="lname" required>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputEmail">Email</label>
                             <div class="controls">
-                                <input type="text" placeholder="Email" name="email" required>
+                                <input class=" inputs" type="text" placeholder="Email" name="email" required>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputName">Password</label>
                             <div class="controls">
-                                <input type="password" placeholder="Password" name="password" required>
-                                <input type="password" placeholder="Confirm Password" name="cpassword" required>
+                                <input class=" inputs" type="password" placeholder="Password" name="password" required>
+                                <input class=" inputs" type="password" placeholder="Confirm Password" name="cpassword" required>
                             </div>
                         </div>
                         <div class="control-group" id="prof">
